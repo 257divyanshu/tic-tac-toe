@@ -1,16 +1,21 @@
+import { useState } from "react";
 import Card from "../Card/Card";
 import "./Grid.css";
 
-function Grid({numberOfCards=9}) {
+function Grid({ numberOfCards = 9 }) {
+    let [turn, setTurn] = useState(true); // false -> X true -> O
+    function play(){
+        setTurn(!turn);
+    }
     return (
-        <div className="grid">
-            {/* {Array(numberOfCards).map(()=><Card/>)} */}
-            {/* this didn't work */}
-            {/* Array(numberOfCards) creates an array with empty slots, not undefined values that can be mapped over */}
-            {/* we need .fill(null) or .fill(undefined) to populate the array slots so .map() can iterate over them */}
-            {/* solution : */}
-            {Array(numberOfCards).fill(null).map((elem,idx)=><Card key={idx}/>)}
-        </div>
+        <>
+            <h1 className="turn-highlight">
+                Current Turn : {turn ? "O":"X"}
+            </h1>
+            <div className="grid">
+                {Array(numberOfCards).fill(null).map((elem, idx) => <Card key={idx} onCardClick={play}/>)}
+            </div>
+        </>
     )
 }
 
