@@ -3,9 +3,11 @@ import Card from "../Card/Card";
 import "./Grid.css";
 
 function Grid({ numberOfCards = 9 }) {
+    console.log('grid re-rendered');
     let [turn, setTurn] = useState(true); // false -> X true -> O
     function play(){
         setTurn(!turn);
+        return turn;
     }
     return (
         <>
