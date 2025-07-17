@@ -46,7 +46,7 @@ function Grid({ numberOfCards = 9 }) {
                 Current Turn : {turn ? "O" : "X"}
             </h1>
             <div className="grid">
-                {board.map((elem, idx) => <Card key={idx} player={elem} index={idx} onPlay={play} />)}
+                {board.map((elem, idx) => <Card key={idx} gameEnd={winner ? true : false} player={elem} index={idx} onPlay={play} />)}
             </div>
             <ToastContainer position="top-center"/>
         </div>

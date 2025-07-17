@@ -1,7 +1,7 @@
 import Icon from "../Icon/Icon";
 import "./Card.css";
 
-function Card({onPlay, player, index}){
+function Card({onPlay, player, index, gameEnd}){
 
     // console.log('card re-rendered');
 
@@ -16,8 +16,7 @@ function Card({onPlay, player, index}){
 
     return (
         <div className="card" onClick={()=>{
-            player==="" && onPlay(index);
-            // onPlay(index);
+            !gameEnd && player==="" && onPlay(index);
         }}>
             {icon}
         </div>
