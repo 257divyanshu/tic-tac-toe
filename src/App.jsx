@@ -1,12 +1,12 @@
 import './App.css'
-import Icon from './components/Icon/Icon'
+import Card from './components/Card/Card'
 
 function App() {
   return (
     <>
-      <Icon/>
-      <Icon iconName={'circle'}/>
-      <Icon iconName={'cross'}/>
+      <Card/>
+      <Card iconName={'circle'}/>
+      <Card iconName={'cross'}/>
     </>
   )
 }
