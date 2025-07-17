@@ -1,31 +1,9 @@
 import { useState } from "react";
 import Card from "../Card/Card";
 import "./Grid.css";
-
-function isWinner(board, symbol) {
-    if (
-        (board[0] === board[1] && board[1] === board[2] && board[2] === symbol)
-        ||
-        (board[3] === board[4] && board[4] === board[5] && board[5] === symbol)
-        ||
-        (board[6] === board[7] && board[7] === board[8] && board[8] === symbol)
-        ||
-        (board[0] === board[4] && board[4] === board[8] && board[8] === symbol)
-        ||
-        (board[2] === board[4] && board[4] === board[6] && board[6] === symbol)
-        ||
-        (board[0] === board[3] && board[3] === board[6] && board[6] === symbol)
-        ||
-        (board[1] === board[4] && board[4] === board[7] && board[7] === symbol)
-        ||
-        (board[2] === board[5] && board[5] === board[8] && board[8] === symbol)
-    ) {
-        return symbol;
-    }
-    else {
-        return null;
-    }
-}
+import {toast, ToastContainer} from "react-toastify";
+import "react-toastify/ReactToastify.css";
+import isWinner from "../../helpers/checkWinner";
 
 function Grid({ numberOfCards = 9 }) {
     // console.log('grid re-rendered');
@@ -43,7 +21,7 @@ function Grid({ numberOfCards = 9 }) {
         const win = isWinner(board, turn ? "O" : "X");
         if (win) {
             setWinner(win);
-            console.log(win, 'has won the game!');
+            toast.success(`Congratulations ${win}! You have won the game!`);            
         };
         setTurn(!turn);
         setBoard([...board]);
@@ -70,6 +48,7 @@ function Grid({ numberOfCards = 9 }) {
             <div className="grid">
                 {board.map((elem, idx) => <Card key={idx} player={elem} index={idx} onPlay={play} />)}
             </div>
+            <ToastContainer position="top-center"/>
         </div>
     )
 }
