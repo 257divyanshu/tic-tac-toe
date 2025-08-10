@@ -1,12 +1,36 @@
-# React + Vite
+# Tic-Tac-Toe with React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A classic Tic-Tac-Toe game built with React and Vite, featuring a clean, responsive UI. This project demonstrates core React concepts like state management, component architecture, and conditional rendering.
 
-Currently, two official plugins are available:
+[**Live Demo Link**](https://tic-tac-toe-react-three-kappa.vercel.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![Project Demo GIF](https://github.com/257divyanshu/tic-tac-toe/blob/main/demo.gif?raw=true)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ✨ Core Features
+
+* **Stateful Game Logic:** Manages player turns, board state, and win/draw conditions using React Hooks.
+* **Component-Based Architecture:** Built with reusable components for the game board, cells, and player icons.
+* **Responsive & Dynamic UI:** The interface adapts to various screen sizes and conditionally renders elements based on the game's state.
+
+---
+
+## 🛠️ Tech Stack
+
+* **Frontend:** React.js
+* **Build Tool:** Vite
+* **Styling:** CSS3 with Flexbox
+
+---
+
+## 📂 Project Structure
+
+The project uses a component-based architecture for organization and reusability.
+
+* **`App.jsx`**: Main application entry point.
+* **`/components`**: Contains all reusable React components.
+    * **`Grid/`**: Manages game state, board logic, and renders the grid.
+    * **`Card/`**: Represents a single clickable cell.
+    * **`Icon/`**: Renders the 'X' and 'O' SVG symbols.
+* **`/helpers`**: Contains utility functions like `checkWinner.js`.
