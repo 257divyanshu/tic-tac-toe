@@ -3,7 +3,7 @@ import "./Card.css";
 
 function Card({onPlay, player, index, gameEnd}){
 
-    console.log('card re-rendered');
+    // console.log('card re-rendered');
 
     let icon = <Icon/>;
 
