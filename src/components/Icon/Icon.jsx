@@ -1,7 +1,7 @@
 import "./icon.css";
 
 function Icon({iconName}){
-    // console.log('Icon rendered')
+    console.log('Icon rendered')
     if(iconName==="circle"){
         return <div className="icons" style={{
             borderColor: "#f08080"

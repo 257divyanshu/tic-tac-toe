@@ -1,54 +1,71 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Card from "../Card/Card";
 import "./Grid.css";
-import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.css";
 import isWinner from "../../helpers/checkWinner";
+import makeAiMove from "../../helpers/botLogic";
 
 function Grid({ numberOfCards = 9 }) {
-    // console.log('grid re-rendered');
+    console.log('grid re-rendered');
     let [turn, setTurn] = useState(true); // false -> X true -> O
     let [board, setBoard] = useState(Array(numberOfCards).fill(""));
-    let [checked, setChecked] = useState(0);
     let [winner, setWinner] = useState(null);
-    function play(index) {
-        setChecked(checked + 1);
-        if (turn) {
-            board[index] = "O";
+    useEffect(() => {
+        console.log("useEffect callback called")
+        if (!turn && !winner) {
+            setTimeout(() => {
+                const newBoard = makeAiMove(board);
+                setBoard(newBoard);
+                const win = isWinner(newBoard, 'X');
+                if (win) {
+                    setWinner(win);
+                } else if (newBoard.every(cell => cell !== "")) {
+                    setWinner("draw");
+                }
+                else {
+                    setTurn(true);
+                };
+            }, 1000);
         }
-        else {
-            board[index] = "X";
+    },[turn,board,winner]);
+    function play(index) {
+        if (!turn) {
+            return;
         };
-        const win = isWinner(board, turn ? "O" : "X");
+        const newBoard = [...board];
+        newBoard[index] = "O";
+        setBoard(newBoard);
+        const win = isWinner(newBoard, 'O');
         if (win) {
             setWinner(win);
-            toast.success(`Congratulations ${win}! You have won the game!`);
+        } else if (newBoard.every(cell => cell !== "")) {
+            setWinner("draw");
+        }
+        else {
+            setTurn(false);
         };
-        setTurn(!turn);
-        setBoard([...board]);
     }
     function resetGame() {
         setBoard(Array(numberOfCards).fill(""));
         setWinner(null);
         setTurn(true);
-        setChecked(0);
     }
     return (
         <div className="grid-wrapper">
-            {!winner && checked!=9 && <h1
+            {!winner && <h1
                 className="displayer"
             >
                 Current Turn : {turn ? "O" : "X"}
             </h1>}
-            {!winner && checked==9 && <h1
+            {winner==="draw" && <h1
                 className="displayer"
             >
                 It's a draw
             </h1>}
-            {winner && <h1
+            {winner && winner!=="draw" && <h1
                 className="displayer"
                 style={{
-                    backgroundColor: winner==='O' ? "#f08080" : "#6ca9f0"
+                    backgroundColor: winner === 'O' ? "#f08080" : "#6ca9f0"
                 }}
             >
                 {winner} is the winner!
@@ -56,7 +73,7 @@ function Grid({ numberOfCards = 9 }) {
             <div className="grid">
                 {board.map((elem, idx) => <Card key={idx} gameEnd={winner ? true : false} player={elem} index={idx} onPlay={play} />)}
             </div>
-            {(winner || checked == 9) && (
+            {(winner) && (
                 <div className="reset-btn-holder">
                     <button
                         className="displayer reset-btn"
