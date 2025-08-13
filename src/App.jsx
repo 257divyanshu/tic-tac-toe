@@ -1,12 +1,20 @@
 import './App.css'
-import Card from './components/Card/Card'
-import Grid from './components/Grid/Grid'
+import SinglePlayerGrid from "./components/Grid/SinglePlayerGrid";
+import MultiPlyaerGrid from "./components/Grid/MultiPlayerGrid";
+import PlayerMode from './components/PlayerMode/PlayerMode';
+import { useState } from 'react';
 
 function App() {
+  let [mode, setMode] = useState("");
+  function selectMode(val){
+    setMode(val);
+  };
   return (
-    <>
-      <Grid/>
-    </>
+    <div className='app'>
+      {!mode && <PlayerMode onModeSelect={selectMode}/>}
+      {mode==="single" && <SinglePlayerGrid/>}
+      {mode==="multi" && <MultiPlyaerGrid/>}
+    </div>
   )
 }
 

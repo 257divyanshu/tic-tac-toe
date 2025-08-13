@@ -1,7 +1,7 @@
 .grid-wrapper{
-    max-width: 400px;
+    /* border: 1px solid black; */
+    max-width: 300px;
     margin: auto;
-    aspect-ratio: 1 / 1;
     padding: 30px;
 }
 .grid{
