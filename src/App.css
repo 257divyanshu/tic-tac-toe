@@ -2,6 +2,33 @@
   --yellow: #ffc107;
   --resetGreen: #28a745;
 }
+*{
+  box-sizing: border-box;
+}
 /* .app{
   border: 1px solid black;
 } */
+.wrapper{
+    /* border: 1px solid black; */
+    max-width: 380px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 20px;
+}
+.themed-text{
+    font-weight: bolder;
+    text-align: center;
+    padding: 10px 0px;
+    border-radius: 8px;
+    font-family: monospace;
+    font-size: 30px;
+    font-size: clamp(0.75rem, 1.08rem + 0.83vw, 1.8rem);
+}
+.buttons{
+    border: none;
+    color: white;
+    background-color: #BA55D3;
+    margin-bottom: 10px;
+    width: 100%;
+}

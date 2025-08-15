@@ -1,8 +1,8 @@
 .grid-wrapper{
     /* border: 1px solid black; */
-    max-width: 300px;
+    max-width: 380px;
     margin: auto;
-    padding: 30px;
+    padding: 0px 20px;
 }
 .grid{
     display: flex;
@@ -11,28 +11,5 @@
     align-items: center;
     flex-wrap: wrap;
     row-gap: 10px;
-    margin-bottom: 20px;
-}
-.reset{
-    color: white;    
-    background-color: var(--resetGreen);
-    padding: 1rem;
-    border-radius: 10px;
-    border: none;
-    width: 100%;
-}
-.displayer{
-    font-weight: bolder;
-    text-align: center;
-    padding: 10px 0px;
-    border-radius: 8px;
-    font-family: monospace;
-    color: white;
-    font-size: 30px;
-    font-size: clamp(0.75rem, 1.08rem + 0.83vw, 1.8rem);
-    background-color: #BA55D3;
-}
-.reset-btn{
-    border: none;
-    width: 100%;
+    margin: 20px 0px;
 }

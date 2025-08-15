@@ -1,19 +1,25 @@
 import './App.css'
-import SinglePlayerGrid from "./components/Grid/SinglePlayerGrid";
-import MultiPlyaerGrid from "./components/Grid/MultiPlayerGrid";
-import PlayerMode from './components/PlayerMode/PlayerMode';
+import MultiPlayerGrid from "./components/Grid/MultiPlayerGrid";
+import SelectPlayerMode from './components/SelectPlayerMode/SelectPlayerMode';
 import { useState } from 'react';
+import SelectPlayerOne from './components/SelectPlayerOne/SelectPlayerOne';
+import SinglePlayerGrid from './components/Grid/SinglePlayerGrid';
 
 function App() {
   let [mode, setMode] = useState("");
-  function selectMode(val){
+  function selectMode(val) {
     setMode(val);
   };
+  let [playerOne, setPlayerOne] = useState("");
+    function selectPlayerOne(val) {
+        setPlayerOne(val);
+    };
   return (
     <div className='app'>
-      {!mode && <PlayerMode onModeSelect={selectMode}/>}
-      {mode==="single" && <SinglePlayerGrid/>}
-      {mode==="multi" && <MultiPlyaerGrid/>}
+      {!mode && !playerOne && <SelectPlayerMode onModeSelect={selectMode} />}
+      {mode === "multi" && <MultiPlayerGrid />}
+      {mode === "single" && !playerOne && <SelectPlayerOne onPlayerOneSelect={selectPlayerOne}/>}
+      {mode === "single" && playerOne && <SinglePlayerGrid firstMove={playerOne}/>}
     </div>
   )
 }

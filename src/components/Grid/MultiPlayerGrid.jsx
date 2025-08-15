@@ -3,49 +3,53 @@ import Card from "../Card/Card";
 import "./Grid.css";
 import isWinner from "../../helpers/checkWinner";
 
-function Grid({ numberOfCards = 9 }) {
-    console.log('grid re-rendered');
+function MultiPlayerGrid({ numberOfCards = 9 }) {
+    // console.log('grid re-rendered');
     let [turn, setTurn] = useState(true); // false -> X true -> O
     let [board, setBoard] = useState(Array(numberOfCards).fill(""));
-    let [checked, setChecked] = useState(0);
     let [winner, setWinner] = useState(null);
     function play(index) {
-        setChecked(checked + 1);
+        const newBoard = [...board];
         if (turn) {
-            board[index] = "O";
+            newBoard[index] = "O";
         }
         else {
-            board[index] = "X";
+            newBoard[index] = "X";
         };
-        const win = isWinner(board, turn ? "O" : "X");
+        setBoard(newBoard);
+        const win = isWinner(newBoard, turn ? "O" : "X");
         if (win) {
             setWinner(win);
-        };
-        setTurn(!turn);
-        setBoard([...board]);
+        }
+        else if (newBoard.every(cell => cell !== "")) {
+            setWinner("draw");
+        }
+        else {
+            setTurn(!turn);
+        }
     }
     function resetGame() {
         setBoard(Array(numberOfCards).fill(""));
         setWinner(null);
         setTurn(true);
-        setChecked(0);
     }
     return (
         <div className="grid-wrapper">
-            {!winner && checked!=9 && <h1
-                className="displayer"
+            {!winner && <h1
+                className="buttons themed-text"
             >
                 Current Turn : {turn ? "O" : "X"}
             </h1>}
-            {!winner && checked==9 && <h1
-                className="displayer"
+            {winner === "draw" && <h1
+                className="buttons themed-text"
+
             >
                 It's a draw
             </h1>}
-            {winner && <h1
-                className="displayer"
+            {winner && winner !== "draw" && <h1
+                className="buttons themed-text"
                 style={{
-                    backgroundColor: winner==='O' ? "#f08080" : "#6ca9f0"
+                    backgroundColor: winner === 'O' ? "#f08080" : "#6ca9f0"
                 }}
             >
                 {winner} is the winner!
@@ -53,18 +57,24 @@ function Grid({ numberOfCards = 9 }) {
             <div className="grid">
                 {board.map((elem, idx) => <Card key={idx} gameEnd={winner ? true : false} player={elem} index={idx} onPlay={play} />)}
             </div>
-            {(winner || checked == 9) && (
-                <div className="reset-btn-holder">
+            {(winner) && (
+                <>
                     <button
-                        className="displayer reset-btn"
+                        className="buttons themed-text"
                         onClick={resetGame}
                     >
                         Reset Game
                     </button>
-                </div>
+                    <button
+                        className="buttons themed-text"
+                        onClick={() => window.location.reload()}
+                    >
+                        Take me home
+                    </button>
+                </>
             )}
         </div>
     )
 }
 
-export default Grid;
+export default MultiPlayerGrid;

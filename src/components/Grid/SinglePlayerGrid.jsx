@@ -3,18 +3,18 @@ import Card from "../Card/Card";
 import "./Grid.css";
 import "react-toastify/ReactToastify.css";
 import isWinner from "../../helpers/checkWinner";
-import makeAiMove from "../../helpers/botLogic";
+import makeBotMove from "../../helpers/botLogic";
 
-function Grid({ numberOfCards = 9 }) {
-    console.log('grid re-rendered');
-    let [turn, setTurn] = useState(true); // false -> X true -> O
+function SinglePlayerGrid({ firstMove, numberOfCards = 9 }) {
+    // console.log('grid re-rendered');
+    let [turn, setTurn] = useState(firstMove === 'O'); // false -> X true -> O
     let [board, setBoard] = useState(Array(numberOfCards).fill(""));
     let [winner, setWinner] = useState(null);
     useEffect(() => {
-        console.log("useEffect callback called")
+        // console.log("useEffect callback called")
         if (!turn && !winner) {
             setTimeout(() => {
-                const newBoard = makeAiMove(board);
+                const newBoard = makeBotMove(board);
                 setBoard(newBoard);
                 const win = isWinner(newBoard, 'X');
                 if (win) {
@@ -27,7 +27,7 @@ function Grid({ numberOfCards = 9 }) {
                 };
             }, 1000);
         }
-    },[turn,board,winner]);
+    }, [turn, board, winner]);
     function play(index) {
         if (!turn) {
             return;
@@ -48,43 +48,50 @@ function Grid({ numberOfCards = 9 }) {
     function resetGame() {
         setBoard(Array(numberOfCards).fill(""));
         setWinner(null);
-        setTurn(true);
+        setTurn(firstMove === 'O');
     }
     return (
         <div className="grid-wrapper">
             {!winner && <h1
-                className="displayer"
+                className="buttons themed-text"
+
             >
-                Current Turn : {turn ? "O" : "X"}
+                Current Turn : {turn ? "You" : "Bot"}
             </h1>}
-            {winner==="draw" && <h1
-                className="displayer"
+            {winner === "draw" && <h1
+                className="buttons themed-text"
             >
                 It's a draw
             </h1>}
-            {winner && winner!=="draw" && <h1
-                className="displayer"
+            {winner && winner !== "draw" && <h1
+                className="buttons themed-text"
                 style={{
                     backgroundColor: winner === 'O' ? "#f08080" : "#6ca9f0"
                 }}
             >
-                {winner} is the winner!
+                {winner === 'O' ? "You" : "Bot"} won!
             </h1>}
             <div className="grid">
                 {board.map((elem, idx) => <Card key={idx} gameEnd={winner ? true : false} player={elem} index={idx} onPlay={play} />)}
             </div>
             {(winner) && (
-                <div className="reset-btn-holder">
+                <>
                     <button
-                        className="displayer reset-btn"
+                        className="buttons themed-text"
                         onClick={resetGame}
                     >
                         Reset Game
                     </button>
-                </div>
+                    <button
+                        className="buttons themed-text"
+                        onClick={() => window.location.reload()}
+                    >
+                        Take me home
+                    </button>
+                </>
             )}
         </div>
     )
 }
 
-export default Grid;
+export default SinglePlayerGrid;
