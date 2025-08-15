@@ -1,10 +1,11 @@
 .grid-wrapper{
     /* border: 1px solid black; */
-    max-width: 380px;
+    max-width: 350px;
     margin: auto;
     padding: 0px 20px;
 }
 .grid{
+    /* border: 1px solid black; */
     display: flex;
     width: 100%;
     justify-content: space-between;

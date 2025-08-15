@@ -1,6 +1,6 @@
 :root{
   --yellow: #ffc107;
-  --resetGreen: #28a745;
+  --resetGreen: #4f5651;
 }
 *{
   box-sizing: border-box;
@@ -10,7 +10,7 @@
 } */
 .wrapper{
     /* border: 1px solid black; */
-    max-width: 380px;
+    max-width: 350px;
     margin: auto;
     display: flex;
     flex-direction: column;

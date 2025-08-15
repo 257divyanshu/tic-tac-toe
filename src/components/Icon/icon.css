@@ -5,14 +5,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    box-sizing: border-box;
     border-radius: 7%;
 }
 
 .x-icon, .o-icon {
     width: 50%;
     height: 50%;
-}
+}   
 
 .x-icon {
     stroke: #6ca9f0;
