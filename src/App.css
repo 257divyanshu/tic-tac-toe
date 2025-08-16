@@ -4,6 +4,7 @@
 }
 *{
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 /* .app{
   border: 1px solid black;
