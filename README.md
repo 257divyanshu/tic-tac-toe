@@ -1,18 +1,20 @@
-# Tic-Tac-Toe with React
+# Tic-Tac-Toe
 
-A classic Tic-Tac-Toe game built with React and Vite, featuring a clean, responsive UI. This project demonstrates core React concepts like state management, component architecture, and conditional rendering.
+A classic Tic-Tac-Toe game built with React and Vite, featuring a clean, responsive UI, multiple game modes, and an intelligent Bot opponent. This project demonstrates modern React development practices, including state management with custom hooks, component-based architecture, and conditional rendering.
 
 [**Live Demo Link**](https://tic-tac-toe-react-three-kappa.vercel.app)
 
-![Project Demo GIF](https://github.com/257divyanshu/tic-tac-toe/blob/main/demo.gif?raw=true)
+![Project Demo GIF](https://raw.githubusercontent.com/257divyanshu/tic-tac-toe/main/demo.gif?raw=true)
 
 ---
 
-## ✨ Core Features
+## ✨ Features
 
-* **Stateful Game Logic:** Manages player turns, board state, and win/draw conditions using React Hooks.
-* **Component-Based Architecture:** Built with reusable components for the game board, cells, and player icons.
-* **Responsive & Dynamic UI:** The interface adapts to various screen sizes and conditionally renders elements based on the game's state.
+* **Dual Game Modes:** Choose between a challenging **Single Player** mode against a Bot or a classic **Multiplayer** mode for two players on the same screen.
+* **Intelligent Bot Opponent:** The single-player mode features a bot with a strategic, non-random logic, providing a balanced challenge.
+* **Pre-Game Selections:** Includes intuitive screens for selecting the game mode and choosing who makes the first move in single-player matches.
+* **Clean Architecture:** Separates complex game logic from the UI by using a custom `useTicTacToe` hook, making the code more readable and maintainable.
+* **Responsive & Dynamic UI:** The interface adapts smoothly to various screen sizes and conditionally renders elements based on the game's state.
 
 ---
 
@@ -26,11 +28,12 @@ A classic Tic-Tac-Toe game built with React and Vite, featuring a clean, respons
 
 ## 📂 Project Structure
 
-The project uses a component-based architecture for organization and reusability.
+The project follows a clean, component-based architecture with a clear separation of concerns.
 
-* **`App.jsx`**: Main application entry point.
-* **`/components`**: Contains all reusable React components.
-    * **`Grid/`**: Manages game state, board logic, and renders the grid.
-    * **`Card/`**: Represents a single clickable cell.
-    * **`Icon/`**: Renders the 'X' and 'O' SVG symbols.
-* **`/helpers`**: Contains utility functions like `checkWinner.js`.
+* **`App.jsx`**: The main component that handles routing between different game states and modes.
+* **`/components`**: Contains all reusable UI components.
+    * **`Grid/`**: Holds the `SinglePlayerGrid` and `MultiPlayerGrid` components, which render the game board.
+    * **`SelectPlayerMode/` & `SelectPlayerOne/`**: Components for the pre-game setup screens.
+    * **`Card/` & `Icon/`**: Components for the individual cells and player symbols.
+* **`/hooks`**: Contains custom hooks, like `useTicTacToe.js`, which encapsulates all the game logic.
+* **`/helpers`**: Contains utility and bot logic functions, such as `checkWinner.js` and the bot logic files.
