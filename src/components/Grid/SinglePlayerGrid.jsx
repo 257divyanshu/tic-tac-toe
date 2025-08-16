@@ -1,6 +1,7 @@
 import Card from "../Card/Card";
 import "./Grid.css";
 import { useTicTacToe } from "../../hooks/useTicTacToe";
+import Button from "../Button/Button";
 
 function SinglePlayerGrid({ firstMove }) {
     // console.log('grid re-rendered');
@@ -31,18 +32,18 @@ function SinglePlayerGrid({ firstMove }) {
             </div>
             {(winner) && (
                 <>
-                    <button
+                    <Button
                         className="buttons themed-text"
                         onClick={resetGame}
                     >
                         Reset Game
-                    </button>
-                    <button
+                    </Button>
+                    <Button
                         className="buttons themed-text"
                         onClick={() => window.location.reload()}
                     >
                         Take me home
-                    </button>
+                    </Button>
                 </>
             )}
         </div>

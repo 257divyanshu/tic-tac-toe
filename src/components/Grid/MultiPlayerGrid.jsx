@@ -2,6 +2,7 @@ import { useState } from "react";
 import Card from "../Card/Card";
 import "./Grid.css";
 import isWinner from "../../helpers/checkWinner";
+import Button from "../Button/Button";
 
 function MultiPlayerGrid({ numberOfCards = 9 }) {
     // console.log('grid re-rendered');
@@ -59,18 +60,18 @@ function MultiPlayerGrid({ numberOfCards = 9 }) {
             </div>
             {(winner) && (
                 <>
-                    <button
+                    <Button
                         className="buttons themed-text"
                         onClick={resetGame}
                     >
                         Reset Game
-                    </button>
-                    <button
+                    </Button>
+                    <Button
                         className="buttons themed-text"
                         onClick={() => window.location.reload()}
                     >
                         Take me home
-                    </button>
+                    </Button>
                 </>
             )}
         </div>
