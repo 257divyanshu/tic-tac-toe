@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import makeBotMove from "../helpers/botLogic";
 import isWinner from "../helpers/checkWinner";
 
-export function useTicTacToe(firstMove, numberOfCards = 9) {
+export function useSinglePlayerTicTacToe(firstMove, numberOfCards = 9) {
     let [turn, setTurn] = useState(firstMove === 'O'); // false -> X true -> O
     let [board, setBoard] = useState(Array(numberOfCards).fill(""));
     let [winner, setWinner] = useState(null);
@@ -51,4 +51,4 @@ export function useTicTacToe(firstMove, numberOfCards = 9) {
     };
 
     return { board, turn, winner, play, resetGame };
-}
+};

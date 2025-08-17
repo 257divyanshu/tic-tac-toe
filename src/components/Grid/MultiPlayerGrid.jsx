@@ -1,54 +1,26 @@
-import { useState } from "react";
 import Card from "../Card/Card";
 import "./Grid.css";
-import isWinner from "../../helpers/checkWinner";
 import Button from "../Button/Button";
+import { useMultiPlayerTicTacToe } from "../../hooks/useMutliPlayerTicTacToe";
 
-function MultiPlayerGrid({ numberOfCards = 9 }) {
+function MultiPlayerGrid() {
     // console.log('grid re-rendered');
-    let [turn, setTurn] = useState(true); // false -> X true -> O
-    let [board, setBoard] = useState(Array(numberOfCards).fill(""));
-    let [winner, setWinner] = useState(null);
-    function play(index) {
-        const newBoard = [...board];
-        if (turn) {
-            newBoard[index] = "O";
-        }
-        else {
-            newBoard[index] = "X";
-        };
-        setBoard(newBoard);
-        const win = isWinner(newBoard, turn ? "O" : "X");
-        if (win) {
-            setWinner(win);
-        }
-        else if (newBoard.every(cell => cell !== "")) {
-            setWinner("draw");
-        }
-        else {
-            setTurn(!turn);
-        }
-    }
-    function resetGame() {
-        setBoard(Array(numberOfCards).fill(""));
-        setWinner(null);
-        setTurn(true);
-    }
+    const {board, turn, winner, play, resetGame} = useMultiPlayerTicTacToe();
     return (
         <div className="grid-wrapper">
             {!winner && <h1
-                className="buttons themed-text"
+                className="themed-styling themed-text"
             >
                 Current Turn : {turn ? "O" : "X"}
             </h1>}
             {winner === "draw" && <h1
-                className="buttons themed-text"
+                className="themed-styling themed-text"
 
             >
                 It's a draw
             </h1>}
             {winner && winner !== "draw" && <h1
-                className="buttons themed-text"
+                className="themed-styling themed-text"
                 style={{
                     backgroundColor: winner === 'O' ? "#f08080" : "#6ca9f0"
                 }}

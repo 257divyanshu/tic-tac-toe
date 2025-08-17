@@ -30,7 +30,7 @@ function Button({ onClick, children, className }) {
   };
 
   return (
-    <button className={`buttons themed-text ${className || ''}`} onClick={handleRippleClick}>
+    <button className={`buttons themed-styling themed-text ${className || ''}`} onClick={handleRippleClick}>
       {children}
     </button>
   );

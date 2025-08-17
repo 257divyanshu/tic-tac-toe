@@ -1,26 +1,26 @@
 import Card from "../Card/Card";
 import "./Grid.css";
-import { useTicTacToe } from "../../hooks/useTicTacToe";
+import { useSinglePlayerTicTacToe } from "../../hooks/useSinglePlayerTicTacToe";
 import Button from "../Button/Button";
 
 function SinglePlayerGrid({ firstMove }) {
     // console.log('grid re-rendered');
-    const {board, turn, winner, play, resetGame} = useTicTacToe(firstMove);
+    const {board, turn, winner, play, resetGame} = useSinglePlayerTicTacToe(firstMove);
     return (
         <div className="grid-wrapper">
             {!winner && <h1
-                className="buttons themed-text"
+                className="themed-styling themed-text"
 
             >
                 Current Turn : {turn ? "You" : "Bot"}
             </h1>}
             {winner === "draw" && <h1
-                className="buttons themed-text"
+                className="themed-styling themed-text"
             >
                 It's a draw
             </h1>}
             {winner && winner !== "draw" && <h1
-                className="buttons themed-text"
+                className="themed-styling themed-text"
                 style={{
                     backgroundColor: winner === 'O' ? "#f08080" : "#6ca9f0"
                 }}
